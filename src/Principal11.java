@@ -51,6 +51,12 @@ public class Principal11 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("JasmineUPC", 2, 24)); // NOI18N
         jLabel2.setText("Numeros de Rollos");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        txtRollos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRollosKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtRollos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 90, -1));
 
         jLabel3.setFont(new java.awt.Font("JasmineUPC", 2, 24)); // NOI18N
@@ -69,7 +75,12 @@ public class Principal11 extends javax.swing.JFrame {
         getContentPane().add(cmbCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
         cmbBorrar.setText("BORRAR");
-        getContentPane().add(cmbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+        cmbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmbBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("JasmineUPC", 2, 24)); // NOI18N
         jLabel4.setText("Valor del revelado");
@@ -79,7 +90,7 @@ public class Principal11 extends javax.swing.JFrame {
         getContentPane().add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 80, -1));
 
         jLabel5.setFont(new java.awt.Font("JasmineUPC", 2, 24)); // NOI18N
-        jLabel5.setText("Valor con IVA");
+        jLabel5.setText("Valor del IVA");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         txtIva.setEditable(false);
@@ -99,10 +110,11 @@ public class Principal11 extends javax.swing.JFrame {
         
         
         if (txtRollos.getText().trim().isEmpty()){
-        JOptionPane.showMessageDialog(this, "Digite el numero uno", "Error",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Digite el Numero de rollos", "Error",JOptionPane.ERROR_MESSAGE);
         txtRollos.requestFocusInWindow();
         } 
         else {
+            
         
         p= Double.parseDouble(txtRollos.getText());
         
@@ -125,6 +137,29 @@ public class Principal11 extends javax.swing.JFrame {
         txtMontoAPagar.setText(tota);
          
     }//GEN-LAST:event_cmbCalcularActionPerformed
+
+    private void cmbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBorrarActionPerformed
+        // TODO add your handling code here:
+        txtRollos.setText("");
+        txtValor.setText("");
+        txtIva.setText("");
+        txtMontoAPagar.setText("");
+        
+        txtRollos.requestFocusInWindow();
+    }//GEN-LAST:event_cmbBorrarActionPerformed
+
+    private void txtRollosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRollosKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+          } 
+    }//GEN-LAST:event_txtRollosKeyTyped
 
     /**
      * @param args the command line arguments
